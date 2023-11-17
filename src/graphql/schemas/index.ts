@@ -21,7 +21,20 @@ export const typeDefs = `#graphql
         name: String!
         email: String!
         password: String!
-    ): User
+        bio: String
+    ): AuthPayload
+  }
+
+  type Mutation {
+    login (
+        email: String!
+        password: String!
+    ): AuthPayload
+  }
+
+  type AuthPayload {
+    token: String
+    message: String
   }
 
   type Profile {
