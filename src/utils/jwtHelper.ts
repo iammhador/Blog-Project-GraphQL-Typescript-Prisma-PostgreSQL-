@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import config from "../config";
 
-export const jwtHelper = async (
+const generateToken = async (
   payload: {
     userId: number;
     name: string;
@@ -11,4 +12,17 @@ export const jwtHelper = async (
   expiresIn: string
 ) => {
   return jwt.sign(payload, secret, { expiresIn: expiresIn });
+};
+
+const verifyToken = async (token: string) => {
+  try {
+    return jwt.verify(token, config.jwt.secret as string);
+  } catch (error) {
+    return null;
+  }
+};
+
+export const JWTHelper = {
+  generateToken,
+  verifyToken,
 };
