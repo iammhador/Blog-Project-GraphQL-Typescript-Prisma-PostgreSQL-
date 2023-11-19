@@ -16,27 +16,6 @@ export const typeDefs = `#graphql
     createdAt: String!
   }
 
-  type Mutation {
-    register (
-        name: String!
-        email: String!
-        password: String!
-        bio: String
-    ): AuthPayload
-  }
-
-  type Mutation {
-    login (
-        email: String!
-        password: String!
-    ): AuthPayload
-
-    post (
-      title: String!
-      content: String!
-    ): PostPayload
-  }
-
   type Profile {
     id: ID!
     bio: String!
@@ -44,10 +23,44 @@ export const typeDefs = `#graphql
     createdAt: String!
   }
 
+  type Mutation {
+    register (
+        name: String!
+        email: String!
+        password: String!
+        bio: String
+    ): AuthPayload
+
+    login (
+        email: String!
+        password: String!
+    ): AuthPayload
+
+    addPost (
+     post: PostInput!
+    ): PostPayload
+
+    updatePost (
+     postId: ID!
+     post: PostInput
+    ): PostPayload
+
+    deletePost (
+      postId: ID!
+    ): PostPayload
+
+    publishedPost (
+      postId: ID!
+    ): PostPayload
+
+  }
+
   type Query {
-    posts: [Post]
     users: [User]
     profile: [Profile]
+    singleUserProfile: Profile
+    posts: [Post]
+    singleUserPosts: [Post]
   }
 
   type AuthPayload {
@@ -58,5 +71,10 @@ export const typeDefs = `#graphql
   type PostPayload {
     message: String
     post: Post
+  }
+
+  input PostInput {
+    title: String
+    content: String
   }
 `;
