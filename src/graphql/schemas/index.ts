@@ -25,24 +25,24 @@ export const typeDefs = `#graphql
 
   type Mutation {
     register (
-        name: String!
-        email: String!
-        password: String!
-        bio: String
+      name: String!
+      email: String!
+      password: String!
+      bio: String
     ): AuthPayload
 
     login (
-        email: String!
-        password: String!
+      email: String!
+      password: String!
     ): AuthPayload
 
     addPost (
-     post: PostInput!
+       post: PostInput!
     ): PostPayload
 
     updatePost (
-     postId: ID!
-     post: PostInput
+      postId: ID!
+      post: PostInput
     ): PostPayload
 
     deletePost (
